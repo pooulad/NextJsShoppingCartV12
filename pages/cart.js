@@ -22,7 +22,7 @@ function CartPage() {
                         <thead>
                             <tr>
                                 <th className='px-5 text-left'>Item</th>
-                                <th className='p-5 text-left'>Quantity</th>
+                                <th className='p-5 text-right'>Quantity</th>
                                 <th className='p-5 text-right'>Price</th>
                                 <th className='p-5'>Action</th>
                             </tr>
@@ -32,13 +32,17 @@ function CartPage() {
                                 <tr className='border-b' key={item.slug}>
                                     <td>
                                         <span className='flex items-center'>
-                                            <Image src={item.image} width={50} height={50} />
-                                            {item.title}
+                                            <Image className='rounded hover:opacity-90' src={item.image} width={50} height={50} />
+                                            <div className='p-2 my-auto'>{item.title}</div>
                                         </span>
                                     </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td className='p-5 text-right'>{item.qty}</td>
+                                    <td className='p-5 text-right'>{item.price}</td>
+                                    <td className='p-5 text-center'>
+                                        <button>
+                                            remove
+                                        </button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
