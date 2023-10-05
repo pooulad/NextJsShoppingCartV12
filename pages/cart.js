@@ -3,6 +3,7 @@ import Layout from '../components/Layout'
 import { CartContext } from '../context/Cart'
 import Link from 'next/link'
 import { AiFillHome } from "react-icons/ai"
+import Image from 'next/image'
 
 function CartPage() {
     const { state, dispatch } = useContext(CartContext)
@@ -29,7 +30,12 @@ function CartPage() {
                         <tbody>
                             {cartItems.map((item) => (
                                 <tr className='border-b' key={item.slug}>
-                                    <td></td>
+                                    <td>
+                                        <span className='flex items-center'>
+                                            <Image src={item.image} width={50} height={50} />
+                                            {item.title}
+                                        </span>
+                                    </td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
