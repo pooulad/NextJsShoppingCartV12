@@ -23,6 +23,10 @@ function SingleProductPage() {
 
         const qty = existingItem ? existingItem.qty + 1 : 1
 
+        if(Product.cound < qty){
+            return
+        }
+
         dispatch({type : "ADD_ITEMS",payload : {...Product,qty}})
     }
     return (
