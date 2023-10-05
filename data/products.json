@@ -6,7 +6,7 @@
     "description": "test description",
     "cat": "books",
     "cound": 10,
-    "image": "images/book.jpg"
+    "image": "/images/book.jpg"
   },
   {
     "title": "book 2",
@@ -15,6 +15,6 @@
     "description": "test description",
     "cat": "books",
     "cound": 10,
-    "image": "images/book.jpg"
+    "image": "/images/book.jpg"
   }
 ]
