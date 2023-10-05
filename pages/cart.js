@@ -4,6 +4,7 @@ import { CartContext } from '../context/Cart'
 import Link from 'next/link'
 import { AiFillHome } from "react-icons/ai"
 import Image from 'next/image'
+import {BsFillTrashFill} from "react-icons/bs"
 
 function CartPage() {
     const { state, dispatch } = useContext(CartContext)
@@ -46,8 +47,8 @@ function CartPage() {
                                     <td className='p-5 text-right'>{item.qty}</td>
                                     <td className='p-5 text-right'>{item.price}</td>
                                     <td className='p-5 text-center'>
-                                        <button>
-                                            remove
+                                        <button className='flex flex-row items-center justify-around m-auto px-2 rounded-xl text-white bg-red-400' onClick={() => { removeItemHandler(item) }}>
+                                            <span>Remove</span><BsFillTrashFill />
                                         </button>
                                     </td>
                                 </tr>
