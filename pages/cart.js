@@ -8,6 +8,13 @@ import Image from 'next/image'
 function CartPage() {
     const { state, dispatch } = useContext(CartContext)
     const { cart: { cartItems } } = state
+
+    function removeItemHandler(item) {
+        dispatch({
+            type: "REMOVE_ITEM",
+            payload: item
+        })
+    }
     return (
         <Layout title="Shopping Cart">
             <h1 className='mb-4 text-lg'>Shopping Cart</h1>
