@@ -24,7 +24,7 @@ function Layout({ children, title }) {
                         </div>
                     </nav>
                 </header>
-                <main>{children}</main>
+                <main className='container m-auto mt-4 px-4'>{children}</main>
                 <footer>footer</footer>
             </div>
         </>
