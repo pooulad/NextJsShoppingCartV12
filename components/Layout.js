@@ -1,8 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext } from 'react'
+import { CartContext } from '../context/Cart'
 
 function Layout({ children, title }) {
+    const { state, dispatch } = useContext(CartContext)
+    const { cart } = state
     return (
         <>
             <Head>
@@ -16,7 +19,12 @@ function Layout({ children, title }) {
                         </Link>
                         <div>
                             <Link href={"/cart"}>
-                                <a className='p-2'>Cart</a>
+                                <a className='p-2'>
+                                    Cart
+                                    {cart.cartItems.length > 0 && (
+                                        <span className='ml-1 rounded-xl bg-gray-200 px-2 py-1 text-xs font-bold'>{cart.cartItems.reduce((acc, cur) => acc + cur.qty, 0)}</span>
+                                    )}
+                                </a>
                             </Link>
                             <Link href={"/login"}>
                                 <a className='p-2'>Login</a>
