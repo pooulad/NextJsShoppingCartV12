@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import Layout from '../components/Layout'
 import { CartContext } from '../context/Cart'
 import Link from 'next/link'
-import {AiFillHome} from "react-icons/ai"
+import { AiFillHome } from "react-icons/ai"
 
 function CartPage() {
     const { state, dispatch } = useContext(CartContext)
@@ -15,7 +15,30 @@ function CartPage() {
                 <Link href={"/"}>
                     <a><AiFillHome /></a>
                 </Link>
-            </div> : <div>s</div>}
+            </div> : <div className='grid md:grid-cols-4 md:gap-5'>
+                <div className='overflow-x-auto md:col-span-3'>
+                    <table className='min-w-full'>
+                        <thead>
+                            <tr>
+                                <th className='px-5 text-left'>Item</th>
+                                <th className='p-5 text-left'>Quantity</th>
+                                <th className='p-5 text-right'>Price</th>
+                                <th className='p-5'>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {cartItems.map((item) => (
+                                <tr className='border-b' key={item.slug}>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>}
         </Layout>
     )
 }
