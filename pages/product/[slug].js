@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { CartContext } from '../../context/Cart';
 
 function SingleProductPage() {
-    const {state,dispatch} = useContext(CartContext)
+    const { state, dispatch } = useContext(CartContext)
     const { query } = useRouter();
     const { slug } = query;
 
@@ -16,18 +16,19 @@ function SingleProductPage() {
         return <div>Product Not Found.</div>
     }
 
-    function addToCartHandler(){
+    function addToCartHandler() {
         const existingItem = state.cart.cartItems.find(
             (item) => item.slug === Product.slug
         )
 
         const qty = existingItem ? existingItem.qty + 1 : 1
 
-        if(Product.cound < qty){
+        if (Product.cound < qty) {
+            alert('You cant add this product anymore')
             return
         }
 
-        dispatch({type : "ADD_ITEMS",payload : {...Product,qty}})
+        dispatch({ type: "ADD_ITEMS", payload: { ...Product, qty } })
     }
     return (
         <Layout title={Product.title}>
