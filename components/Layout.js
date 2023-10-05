@@ -25,7 +25,7 @@ function Layout({ children, title }) {
                     </nav>
                 </header>
                 <main className='container m-auto mt-4 px-4'>{children}</main>
-                <footer>footer</footer>
+                <footer className='flex justify-center items-center h-10'>footer</footer>
             </div>
         </>
     )
