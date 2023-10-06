@@ -7,6 +7,7 @@ import { CartContext } from '../../context/Cart';
 
 function SingleProductPage() {
     const { state, dispatch } = useContext(CartContext)
+    const router = useRouter();
     const { query } = useRouter();
     const { slug } = query;
 
@@ -29,6 +30,8 @@ function SingleProductPage() {
         }
 
         dispatch({ type: "ADD_ITEMS", payload: { ...Product, qty } })
+
+        router.push("/cart")
     }
     return (
         <Layout title={Product.title}>
