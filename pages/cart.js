@@ -4,7 +4,7 @@ import { CartContext } from '../context/Cart'
 import Link from 'next/link'
 import { AiFillHome } from "react-icons/ai"
 import Image from 'next/image'
-import {BsFillTrashFill} from "react-icons/bs"
+import { BsFillTrashFill } from "react-icons/bs"
 
 function CartPage() {
     const { state, dispatch } = useContext(CartContext)
@@ -55,6 +55,12 @@ function CartPage() {
                             ))}
                         </tbody>
                     </table>
+                </div>
+                <div className='p-5'>
+                    <div className='pb-5'>
+                        Total Price:{" "}
+                        {cartItems.reduce((acc, cur) => acc + cur.qty * cur.price, 0)}
+                    </div>
                 </div>
             </div>}
         </Layout>
