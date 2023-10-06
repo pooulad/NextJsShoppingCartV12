@@ -6,6 +6,7 @@ import { AiFillHome } from "react-icons/ai"
 import Image from 'next/image'
 import { BsFillTrashFill } from "react-icons/bs"
 import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
 
 function CartPage() {
     const router = useRouter();
@@ -72,4 +73,4 @@ function CartPage() {
     )
 }
 
-export default CartPage
+export default dynamic(() => Promise.resolve(CartPage),{ssr : false})
