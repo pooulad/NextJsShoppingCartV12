@@ -64,13 +64,13 @@ function CartPage() {
                         Total Price:{" "}
                         {cartItems.reduce((acc, cur) => acc + cur.qty * cur.price, 0)}
                     </div>
-                   <div>
-                   <button onClick={() => router.push("/shipping")} className='rounded-xl bg-gray-700 text-white px-4 py-2'>Checkout</button>
-                   </div>
+                    <div>
+                        <button onClick={() => router.push("login?redirect=/shipping")} className='rounded-xl bg-gray-700 text-white px-4 py-2'>Checkout</button>
+                    </div>
                 </div>
             </div>}
         </Layout>
     )
 }
 
-export default dynamic(() => Promise.resolve(CartPage),{ssr : false})
+export default dynamic(() => Promise.resolve(CartPage), { ssr: false })
