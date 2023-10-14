@@ -41,7 +41,23 @@ function Layout({ children, title }) {
                             </Link>
                             {state === "loading" ? "Loading" : (
                                 session?.user ? (
-                                    session.user.name
+                                    <Menu as={"div"} className="relative inline-block">
+                                        <Menu.Button className="text-blue-500">
+                                            {session.user.name}
+                                        </Menu.Button>
+                                        <Menu.Items className="absolute right-0 w-56 bg-white rounded-xl p-4 origin-top-right border-slate-100">
+                                            <Menu.Item>
+                                                <DropDown className="flex p-2" href={"/profile"}>
+                                                    Profile
+                                                </DropDown>
+                                            </Menu.Item>
+                                            <Menu.Item>
+                                                <a className="flex p-2" href="#" onClick={LogoutHandler}>
+                                                    Logout
+                                                </a>
+                                            </Menu.Item>
+                                        </Menu.Items>
+                                    </Menu>
                                 ) : (
 
                                     <Link href={"/login"}>
