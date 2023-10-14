@@ -3,23 +3,25 @@ import ProductItem from "../components/ProductItem"
 import db from "../utils/db"
 import Product from "../models/product"
 import { useContext } from "react"
-import {CartContext} from "../context/Cart"
+import { CartContext } from "../context/Cart"
 
 function Home({ products }) {
   const { state, dispatch } = useContext(CartContext)
   const { cart } = state
 
   function addToCartHandler(product) {
-    const existingItem = cart.cartItems.find(
+    const existingItem = state.cart.cartItems.find(
       (item) => item.slug === product.slug
     )
 
-    const qty = existingItem ? existingItem + 1 : 1
+    const qty = existingItem ? existingItem.qty + 1 : 1
 
-    dispatch({
-      type: "ADD_TO_CART",
-      payload: { ...product, qty }
-    })
+    if (product.cound < qty) {
+      alert('You cant add this product anymore')
+      return
+    }
+
+    dispatch({ type: "ADD_TO_CART", payload: { ...product, qty } })
   }
   return (
     <Layout title={"Home page"}>
