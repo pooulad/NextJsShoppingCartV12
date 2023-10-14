@@ -68,3 +68,17 @@ export default SingleProductPage
 
 
 export async function getServerSideProps(context) {
+    const { params } = context
+    const { slug } = params
+
+
+    await db.connect()
+
+    const products = await Product.find().lean()
+
+    return {
+        props: {
+            products: products.map(db.convertToObj)
+        }
+    }
+}
