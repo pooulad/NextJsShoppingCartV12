@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
 import Layout from '../../components/Layout'
 import { useRouter } from 'next/router'
-import ProductItems from "../../data/products.json"
 import Image from 'next/image';
 import { CartContext } from '../../context/Cart';
+import db from '../../utils/db';
+import Product from '../../models/product';
 
 function SingleProductPage() {
     const { state, dispatch } = useContext(CartContext)
@@ -63,3 +64,7 @@ function SingleProductPage() {
 }
 
 export default SingleProductPage
+
+
+
+export async function getServerSideProps(context) {
