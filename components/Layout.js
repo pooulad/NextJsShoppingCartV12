@@ -13,6 +13,12 @@ function Layout({ children, title }) {
     useEffect(() => {
         setCartItemsCount(cart.cartItems.reduce((acc, cur) => acc + cur.qty, 0))
     }, [cart.cartItems])
+    function LogoutHandler(){
+        Cookies.remove()
+        signOut({
+            callbackUrl : "/login"
+        })
+    }
     return (
         <>
             <Head>
