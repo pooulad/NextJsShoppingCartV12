@@ -4,6 +4,7 @@ import db from "../utils/db"
 import Product from "../models/product"
 import { useContext } from "react"
 import { CartContext } from "../context/Cart"
+import { toast } from "react-toastify"
 
 function Home({ products }) {
   const { state, dispatch } = useContext(CartContext)
@@ -22,6 +23,7 @@ function Home({ products }) {
     }
 
     dispatch({ type: "ADD_TO_CART", payload: { ...product, qty } })
+    toast.success("Product Added")
   }
   return (
     <Layout title={"Home page"}>
