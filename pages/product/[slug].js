@@ -6,15 +6,11 @@ import { CartContext } from '../../context/Cart';
 import db from '../../utils/db';
 import Product from '../../models/product';
 
-function SingleProductPage() {
+function SingleProductPage({ product }) {
     const { state, dispatch } = useContext(CartContext)
     const router = useRouter();
-    const { query } = useRouter();
-    const { slug } = query;
-
-    const Product = ProductItems.find((item) => item.slug === slug)
-
-    if (!Product) {
+    console.log(product);
+    if (!product) {
         return <div>Product Not Found.</div>
     }
 
@@ -74,11 +70,11 @@ export async function getServerSideProps(context) {
 
     await db.connect()
 
-    const products = await Product.find().lean()
+    const product = await Product.findOne({ slug }).lean()
 
     return {
         props: {
-            products: products.map(db.convertToObj)
+            product: product ? db.convertToObj(product) : null
         }
     }
 }
