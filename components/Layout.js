@@ -26,6 +26,7 @@ function Layout({ children, title }) {
         <>
             <Head>
                 <title>{`${title} - Shopping`}</title>
+                <link rel="icon" href="/images/favicon.ico" sizes="any" />
             </Head>
             <div className='flex min-h-screen flex-col justify-between'>
                 <header>
