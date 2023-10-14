@@ -26,7 +26,7 @@ function SingleProductPage({ product }) {
             return
         }
 
-        dispatch({ type: "ADD_ITEMS", payload: { ...product, qty } })
+        dispatch({ type: "ADD_TO_CART", payload: { ...product, qty } })
 
         router.push("/cart")
     }
