@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../context/Cart'
-import { useSession,signOut } from "next-auth/react"
+import { useSession, signOut } from "next-auth/react"
 import { Menu } from '@headlessui/react'
 import DropDown from './DropDown'
 import Cookies from 'js-cookie'
@@ -16,12 +16,16 @@ function Layout({ children, title }) {
     useEffect(() => {
         setCartItemsCount(cart.cartItems.reduce((acc, cur) => acc + cur.qty, 0))
     }, [cart.cartItems])
-    function LogoutHandler(){
+    function LogoutHandler() {
         Cookies.remove()
         signOut({
-            callbackUrl : "/login"
+            callbackUrl: "/login"
         })
     }
+    const [isClient, setIsClient] = useState(false)
+    useEffect(() => {
+      setIsClient(true)
+    }, [])
     return (
         <>
             <Head>
@@ -38,9 +42,11 @@ function Layout({ children, title }) {
                             <Link href={"/cart"}>
                                 <a className='p-2'>
                                     Cart
-                                    {cart.cartItems.length > 0 && (
-                                        <span className='ml-1 rounded-xl bg-gray-200 px-2 py-1 text-xs font-bold'>{cartItemsCount}</span>
-                                    )}
+                                    {isClient ? (
+                                        cart.cartItems.length > 0 && (
+                                            <span className='ml-1 rounded-xl bg-gray-200 px-2 py-1 text-xs font-bold'>{cartItemsCount}</span>
+                                        )
+                                    ) : 0}
                                 </a>
                             </Link>
                             {state === "loading" ? "Loading" : (
