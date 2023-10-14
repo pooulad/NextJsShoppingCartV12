@@ -6,6 +6,8 @@ import { useSession, signOut } from "next-auth/react"
 import { Menu } from '@headlessui/react'
 import DropDown from './DropDown'
 import Cookies from 'js-cookie'
+import { ToastContainer } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css"
 
 function Layout({ children, title }) {
     const { status, data: session } = useSession()
@@ -24,7 +26,7 @@ function Layout({ children, title }) {
     }
     const [isClient, setIsClient] = useState(false)
     useEffect(() => {
-      setIsClient(true)
+        setIsClient(true)
     }, [])
     return (
         <>
@@ -32,6 +34,7 @@ function Layout({ children, title }) {
                 <title>{`${title} - Shopping`}</title>
                 <link rel="icon" href="/images/favicon.ico" sizes="any" />
             </Head>
+            <ToastContainer position='bottom-center' limit={1} />
             <div className='flex min-h-screen flex-col justify-between'>
                 <header>
                     <nav className='flex h-14 px-8 justify-between items-center border-b-4 bg-white'>
