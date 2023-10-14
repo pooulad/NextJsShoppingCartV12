@@ -10,7 +10,7 @@ function Home({ products }) {
   const { cart } = state
 
   function addToCartHandler(product) {
-    const existingItem = state.cart.cartItems.find(
+    const existingItem = cart.cartItems.find(
       (item) => item.slug === product.slug
     )
 
