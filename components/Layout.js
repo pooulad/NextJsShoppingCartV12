@@ -2,8 +2,10 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../context/Cart'
+import { useSession } from "next-auth/react"
 
 function Layout({ children, title }) {
+    const { status, data: session } = useSession()
     const { state, dispatch } = useContext(CartContext)
     const { cart } = state
 
@@ -31,9 +33,16 @@ function Layout({ children, title }) {
                                     )}
                                 </a>
                             </Link>
-                            <Link href={"/login"}>
-                                <a className='p-2'>Login</a>
-                            </Link>
+                            {state === "loading" ? "Loading" : (
+                                session?.user ? (
+                                    session.user.name
+                                ) : (
+
+                                    <Link href={"/login"}>
+                                        <a className='p-2'>Login</a>
+                                    </Link>
+                                )
+                            )}
                         </div>
                     </nav>
                 </header>
