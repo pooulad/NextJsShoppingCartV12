@@ -1,6 +1,7 @@
 import Layout from "../components/Layout"
-import Product from "../components/Product"
-import ProductItems from "../data/products.json"
+import ProductItem from "../components/ProductItem"
+import db from "../utils/db"
+import Product from "../models/product"
 
 function Home() {
   return (
