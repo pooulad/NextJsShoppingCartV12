@@ -2,7 +2,10 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../context/Cart'
-import { useSession } from "next-auth/react"
+import { useSession,signOut } from "next-auth/react"
+import { Menu } from '@headlessui/react'
+import DropDown from './DropDown'
+import Cookies from 'js-cookie'
 
 function Layout({ children, title }) {
     const { status, data: session } = useSession()
