@@ -43,7 +43,7 @@ function login() {
                     <div className='text-red-500'>{errors.password.message}</div>
                 )}
                 <div className='mb-4'>
-                    <button className='rounded-xl bg-gray-700 text-white px-4 py-2 w-28'>Lohin</button>
+                    <button className='rounded-xl bg-gray-700 text-white px-4 py-2 w-28'>Login</button>
                 </div>
                 <div className='mb-4'>
                     <Link href="/register">Register</Link>
