@@ -9,7 +9,7 @@ async function connect() {
     // connect to local server with run this code :
     // step 1 : cd "C:\Program Files\MongoDB\Server\[MongoDB version]\bin"
     // step 2 : mongod -> runs the server in cmd
-    const uri = "";
+    const uri = "mongodb://localhost:27017/nextJsShopv12";
 
     await mongoose.connect(uri)
 
