@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from "../components/Layout"
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
-import { signIn } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
+import { useRouter } from 'next/router'
 
 function login() {
+    const { data: session } = useSession()
+    const router = useRouter()
+    const { redirect } = router.query
+    useEffect(() => {
+        if (session?.user) {
+            router.push(redirect || "/")
+        }
+    }, [router, session, redirect])
     const { register, handleSubmit, formState: { errors } } = useForm();
     async function submitHandler({ email, password }) {
         try {
