@@ -17,3 +17,15 @@ function Home({products}) {
 
 
 export default Home
+
+export async function getServerSideProps(){
+  await db.connect()
+
+  const products = await Product.find().lean()
+
+  return {
+    props : {
+      products : products.map(db.convertToObj)
+    }
+  }
+}
