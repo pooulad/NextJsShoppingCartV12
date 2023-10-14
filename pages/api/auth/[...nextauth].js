@@ -20,7 +20,7 @@ export default NextAuth({
             if (token?._id) session.user?._id = token?._id
             if (token?.isAdmin) session.user?.isAdmin = token?.isAdmin
 
-            return token
+            return session
         }
     },
     providers: [
