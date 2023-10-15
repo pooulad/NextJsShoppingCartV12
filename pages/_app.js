@@ -1,15 +1,13 @@
 import '../styles/globals.css'
-
 import { SessionProvider, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-
-import { StoreProvider } from '../context/Cart'
+import { CartContextProvider } from '../context/Cart'
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <div className='bg-gray-100'>
       <SessionProvider session={session}>
-        <StoreProvider>
+        <CartContextProvider>
           {Component.auth ? (
             <Auth adminOnly={Component.auth.adminOnly}>
               <Component {...pageProps} />
@@ -17,7 +15,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
           ) : (
             <Component {...pageProps} />
           )}
-        </StoreProvider>
+        </CartContextProvider>
       </SessionProvider>
     </div>
   )
