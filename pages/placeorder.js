@@ -119,4 +119,6 @@ function PlaceOrderPage() {
   )
 }
 
+PlaceOrderPage.auth = true
+
 export default PlaceOrderPage
