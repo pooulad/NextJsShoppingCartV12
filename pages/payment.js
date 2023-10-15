@@ -4,6 +4,7 @@ import Cookies from 'js-cookie'
 import { CartContext } from '../context/Cart'
 import Layout from '../components/Layout'
 import CheckoutWizard from '../components/CheckoutWizard'
+import { toast } from 'react-toastify'
 
 function PaymentPage() {
     const { state, dispatch } = useContext(CartContext)
@@ -19,7 +20,8 @@ function PaymentPage() {
         event.preventDefault()
 
         if (!selectedPaymentMethod) {
-            alert('Please Select Payment Method')
+            toast.error('Please Select Payment Method')
+            return
         }
 
         dispatch({ type: ' SAVE_PAYMENT_METHOD', payload: selectedPaymentMethod })
