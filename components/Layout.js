@@ -24,10 +24,6 @@ function Layout({ children, title }) {
             callbackUrl: "/login"
         })
     }
-    const [isClient, setIsClient] = useState(false)
-    useEffect(() => {
-        setIsClient(true)
-    }, [])
     return (
         <>
             <Head>
@@ -45,11 +41,7 @@ function Layout({ children, title }) {
                             <Link href={"/cart"}>
                                 <a className='p-2'>
                                     Cart
-                                    {isClient ? (
-                                        cart.cartItems.length > 0 && (
-                                            <span className='ml-1 rounded-xl bg-gray-200 px-2 py-1 text-xs font-bold'>{cartItemsCount}</span>
-                                        )
-                                    ) : 0}
+                                    <span className='ml-1 rounded-xl bg-gray-200 px-2 py-1 text-xs font-bold'>{cartItemsCount}</span>
                                 </a>
                             </Link>
                             {state === "loading" ? "Loading" : (
