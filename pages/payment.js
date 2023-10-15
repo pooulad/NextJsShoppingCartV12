@@ -15,3 +15,23 @@ function PaymentPage() {
 
     const router = useRouter()
 
+    function submitHandler(event) {
+        event.preventDefault()
+
+        if (!selectedPaymentMethod) {
+            alert('Please Select Payment Method')
+        }
+
+        dispatch({ type: ' SAVE_PAYMENT_METHOD', payload: selectedPaymentMethod })
+
+        Cookies.set(
+            'cart',
+            JSON.stringify({
+                ...cart,
+                paymentMethod: selectedPaymentMethod,
+            })
+        )
+
+        router.push('/placeorder')
+    }
+
