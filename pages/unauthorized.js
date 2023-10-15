@@ -1,9 +1,11 @@
-import React from 'react'
+import Layout from '../components/Layout'
 
-function unauthorized() {
+function Unauthorized() {
   return (
-    <div>unauthorized</div>
+    <Layout title='Access Denied'>
+      <h2 className='text-xl'>Access Denied</h2>
+    </Layout>
   )
 }
 
-export default unauthorized
+export default Unauthorized
