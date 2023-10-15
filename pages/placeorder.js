@@ -10,3 +10,4 @@ import CheckoutWizard from '../components/CheckoutWizard'
   const { state } = useContext(CartContext)
 
   const { cart } = state
+  const { shippingData, paymentMethod, cartItems } = cart
