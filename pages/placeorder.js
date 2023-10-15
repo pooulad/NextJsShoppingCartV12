@@ -7,3 +7,5 @@ import Layout from '../components/Layout'
 import CheckoutWizard from '../components/CheckoutWizard'
   const router = useRouter()
 
+  const { state } = useContext(CartContext)
+
