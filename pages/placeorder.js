@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { CartContext } from '../context/Cart'
 import Layout from '../components/Layout'
 import CheckoutWizard from '../components/CheckoutWizard'
@@ -29,7 +29,9 @@ function PlaceOrderPage() {
 
     router.push('/order-completed')
   }
-
+  useEffect(() => {
+    console.log("render");
+  }, [paymentMethod])
   return (
     <Layout title='Place Order'>
       <CheckoutWizard activeStep={3} />
