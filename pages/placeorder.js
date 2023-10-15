@@ -32,3 +32,4 @@ import CheckoutWizard from '../components/CheckoutWizard'
     router.push('/order-completed')
   }
       <CheckoutWizard activeStep={3} />
+      <h1 className='mb-4 text-xl'>Place Order</h1>
