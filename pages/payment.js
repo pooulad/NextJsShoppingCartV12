@@ -35,3 +35,5 @@ function PaymentPage() {
         router.push('/placeorder')
     }
 
+    const methods = ['Gateway', 'Offline Payment']
+
