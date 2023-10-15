@@ -11,3 +11,23 @@ import CheckoutWizard from '../components/CheckoutWizard'
 
   const { cart } = state
   const { shippingData, paymentMethod, cartItems } = cart
+
+  async function placeOrderHandler() {
+    const totalPrice = cartItems.reduce(
+      (acc, cur) => acc + cur.qty * cur.price,
+      0
+    )
+
+    await fetch('/api/orders', {
+      method: 'POST',
+      body: JSON.stringify({
+        orderItems: cartItems,
+        shippingData,
+        paymentMethod,
+        totalPrice,
+      }),
+      headers: { 'Content-Type': 'application/json' },
+    })
+
+    router.push('/order-completed')
+  }
