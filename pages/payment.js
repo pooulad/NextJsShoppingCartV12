@@ -74,4 +74,7 @@ function PaymentPage() {
     )
 }
 
+PaymentPage.auth = true
+
+
 export default PaymentPage
