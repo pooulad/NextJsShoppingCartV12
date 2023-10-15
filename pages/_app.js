@@ -17,4 +17,25 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   )
 }
 
+function Auth({ children, adminOnly }) {
+  const router = useRouter()
+  const { status, data: session } = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push('/unauthorized')
+    },
+  })
+
+  if (status === 'loading') {
+    return 'Loading'
+  }
+
+  if (adminOnly && !session.user.isAdmin) {
+    router.push('/unauthorized')
+  }
+
+  return children
+
+}
+
 export default MyApp
