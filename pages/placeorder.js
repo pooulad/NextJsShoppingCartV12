@@ -8,18 +8,14 @@ import CheckoutWizard from '../components/CheckoutWizard'
 
 function PlaceOrderPage() {
   const router = useRouter()
-
   const { state } = useContext(CartContext)
-
   const { cart } = state
   const { shippingData, paymentMethod, cartItems } = cart
-
   async function placeOrderHandler() {
     const totalPrice = cartItems.reduce(
       (acc, cur) => acc + cur.qty * cur.price,
       0
     )
-
     await fetch('/api/orders', {
       method: 'POST',
       body: JSON.stringify({
