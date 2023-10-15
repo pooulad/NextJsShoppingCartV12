@@ -11,23 +11,23 @@ import CheckoutWizard from '../components/CheckoutWizard'
 function Shipping() {
   const { handleSubmit, setValue, register } = useForm()
 
-//   const { state, dispatch } = useContext(CartContext)
+  const { state, dispatch } = useContext(CartContext)
 
-//   const { cart } = state
-//   const { shippingData } = cart
+  const { cart } = state
+  const { shippingData } = cart
 
-//   useEffect(() => {
-//     setValue('name', shippingData.name)
-//     setValue('address', shippingData.address)
-//     setValue('postalCode', shippingData.postalCode)
-//   }, [
-//     setValue,
-//     shippingData.name,
-//     shippingData.address,
-//     shippingData.postalCode,
-//   ])
+  useEffect(() => {
+    setValue('name', shippingData.name)
+    setValue('address', shippingData.address)
+    setValue('postalCode', shippingData.postalCode)
+  }, [
+    setValue,
+    shippingData.name,
+    shippingData.address,
+    shippingData.postalCode,
+  ])
 
-//   const router = useRouter()
+  const router = useRouter()
 
   function submitHandler({ name, address, postalCode }) {
     dispatch({
@@ -95,6 +95,6 @@ function Shipping() {
   )
 }
 
-// Shipping.auth = true
+Shipping.auth = true
 
 export default Shipping
