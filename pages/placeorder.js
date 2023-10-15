@@ -9,3 +9,4 @@ import CheckoutWizard from '../components/CheckoutWizard'
 
   const { state } = useContext(CartContext)
 
+  const { cart } = state
