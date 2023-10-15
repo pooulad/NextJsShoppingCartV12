@@ -5,3 +5,5 @@ import { useContext } from 'react'
 import { CartContext } from '../context/Cart'
 import Layout from '../components/Layout'
 import CheckoutWizard from '../components/CheckoutWizard'
+  const router = useRouter()
+
