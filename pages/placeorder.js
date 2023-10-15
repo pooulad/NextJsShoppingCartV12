@@ -31,3 +31,4 @@ import CheckoutWizard from '../components/CheckoutWizard'
 
     router.push('/order-completed')
   }
+      <CheckoutWizard activeStep={3} />
