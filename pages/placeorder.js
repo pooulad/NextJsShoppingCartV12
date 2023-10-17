@@ -1,27 +1,21 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import { useContext } from 'react'
-
-import { Store } from '../context/Cart'
-
+import { useContext, useEffect } from 'react'
+import { CartContext } from '../context/Cart'
 import Layout from '../components/Layout'
 import CheckoutWizard from '../components/CheckoutWizard'
 
 function PlaceOrderPage() {
   const router = useRouter()
-
-  const { state } = useContext(Store)
-
+  const { state } = useContext(CartContext)
   const { cart } = state
   const { shippingData, paymentMethod, cartItems } = cart
-
   async function placeOrderHandler() {
     const totalPrice = cartItems.reduce(
       (acc, cur) => acc + cur.qty * cur.price,
       0
     )
-
     await fetch('/api/orders', {
       method: 'POST',
       body: JSON.stringify({
@@ -35,7 +29,9 @@ function PlaceOrderPage() {
 
     router.push('/order-completed')
   }
-
+  useEffect(() => {
+    console.log("render");
+  }, [paymentMethod])
   return (
     <Layout title='Place Order'>
       <CheckoutWizard activeStep={3} />
@@ -109,7 +105,7 @@ function PlaceOrderPage() {
             <li>
               <button
                 onClick={placeOrderHandler}
-                className='rounded-xl bg-gray-700 text-white px-4 py-2' 
+                className='rounded-xl bg-gray-700 text-white px-4 py-2'
               >
                 Place Order
               </button>
@@ -120,5 +116,7 @@ function PlaceOrderPage() {
     </Layout>
   )
 }
+
+PlaceOrderPage.auth = true
 
 export default PlaceOrderPage
