@@ -1,15 +1,13 @@
-import db from '../../utils/db'
-import products from '../../data/products'
-import Product from '../../models/product'
+import db from "../../utils/db"
+import Product from "../../models/product"
+import productsItems from "../../data/products"
 
-async function handler(req, res) {
+export default async function handler(req, res) {
   await db.connect()
 
   await Product.deleteMany()
 
-  await Product.insertMany(products)
+  await Product.insertMany(productsItems)
 
-  res.send({ message: 'products added.' })
+  res.send({ message: "products added" })
 }
-
-export default handler
