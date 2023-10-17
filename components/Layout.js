@@ -37,6 +37,7 @@ function Layout({ title, children }) {
     <>
       <Head>
         <title>{`${title} - Shopping`}</title>
+        <link rel="icon" href="/images/favicon.ico" sizes="any" />
       </Head>
       <ToastContainer position='bottom-center' limit={1} />
       <div className='flex min-h-screen flex-col justify-between'>
