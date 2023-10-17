@@ -1,82 +1,79 @@
 import { useRouter } from 'next/router'
-import { useState, useContext, useEffect } from 'react'
+import { useState, useContext } from 'react'
 import Cookies from 'js-cookie'
-import { CartContext } from '../context/Cart'
+
+import { Store } from '../context/Cart'
+
 import Layout from '../components/Layout'
 import CheckoutWizard from '../components/CheckoutWizard'
-import { toast } from 'react-toastify'
 
 function PaymentPage() {
-    const { state, dispatch } = useContext(CartContext)
-    const { cart } = state
-    const { paymentMethod } = cart
-    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('')
-    const router = useRouter()
-    useEffect(() => {
-        setSelectedPaymentMethod(paymentMethod)
-    }, [paymentMethod])
-    function submitHandler(event) {
-        event.preventDefault()
+  const { state, dispatch } = useContext(Store)
 
-        if (!selectedPaymentMethod) {
-            toast.error('Please Select Payment Method')
-            return
-        } else {
-            dispatch({ type: ' SAVE_PAYMENT_METHOD', payload: selectedPaymentMethod })
+  const { cart } = state
+  const { paymentMethod } = cart
 
-            Cookies.set(
-                'cart',
-                JSON.stringify({
-                    ...cart,
-                    paymentMethod: selectedPaymentMethod,
-                })
-            )
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('')
 
-            router.push('/placeorder')
-        }
+  const router = useRouter()
 
+  function submitHandler(event) {
+    event.preventDefault()
+
+    if (!selectedPaymentMethod) {
+      alert('Please Select Payment Method')
     }
 
-    const methods = ['Gateway', 'Offline Payment']
+    dispatch({ type: ' SAVE_PAYMENT_METHOD', payload: selectedPaymentMethod })
 
-    return (
-        <Layout title='Payment Page'>
-            <CheckoutWizard activeStep={2} />
-            <form className='mx-auto max-w-screen-md' onSubmit={submitHandler}>
-                <h2 className='mb-4 text-xl'>Payment Method</h2>
-                {methods.map((item) => (
-                    <div key={item} className='mb-4'>
-                        <input
-                            name='paymentMethod'
-                            className='p-2 outline-none focus:ring-0'
-                            id={item}
-                            type='radio'
-                            checked={selectedPaymentMethod === item}
-                            onChange={() => setSelectedPaymentMethod(item)}
-                        />
-                        <label className='p-2' htmlFor={item}>
-                            {item}
-                        </label>
-                    </div>
-                ))}
-                <div className='mb-4 flex justify-between'>
-                    <button
-                        onClick={() => router.push('/shipping')}
-                        type='button'
-                        className='rounded-xl bg-gray-300 text-gray-700 px-4 py-2 w-28'
-                    >
-                        Back
-                    </button>
-                    <button className='rounded-xl bg-gray-700 text-white px-4 py-2 w-28'>
-                        Next
-                    </button>
-                </div>
-            </form>
-        </Layout>
+    Cookies.set(
+      'cart',
+      JSON.stringify({
+        ...cart,
+        paymentMethod: selectedPaymentMethod,
+      })
     )
+
+    router.push('/placeorder')
+  }
+
+  const methods = ['Gateway', 'Offline Payment']
+
+  return (
+    <Layout title='Payment Page'>
+      <CheckoutWizard activeStep={2} />
+      <form className='mx-auto max-w-screen-md' onSubmit={submitHandler}>
+        <h2 className='mb-4 text-xl'>Payment Method</h2>
+        {methods.map((item) => (
+          <div key={item} className='mb-4'>
+            <input
+              name='paymentMethod'
+              className='p-2 outline-none focus:ring-0'
+              id={item}
+              type='radio'
+              checked={selectedPaymentMethod === item}
+              onChange={() => setSelectedPaymentMethod(item)}
+            />
+            <label className='p-2' htmlFor={item}>
+              {item}
+            </label>
+          </div>
+        ))}
+        <div className='mb-4 flex justify-between'>
+          <button
+            onClick={() => router.push('/shipping')}
+            type='button'
+            className='rounded-xl bg-gray-300 text-gray-700 px-4 py-2 w-28'
+          >
+            Back
+          </button>
+          <button className='rounded-xl bg-gray-700 text-white px-4 py-2 w-28'>
+            Next
+          </button>
+        </div>
+      </form>
+    </Layout>
+  )
 }
-
-PaymentPage.auth = true
-
 
 export default PaymentPage
