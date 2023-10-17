@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![image](https://github.com/pooulad/NextJsShoppingCartV12/assets/86445458/e675f07e-9a86-4da8-9759-683fb9644c57)
 
-![Uiconstock-E-Commerce-Shopping 256](https://github.com/pooulad/NextJsShoppingCartV12/assets/86445458/d3aca32f-ae15-49d0-a141-9a54998018b5)
 ## Getting Started
 
 
