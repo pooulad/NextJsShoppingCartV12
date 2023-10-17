@@ -3,15 +3,15 @@ import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
 import { useForm } from 'react-hook-form'
 
-import { CartContext } from '../context/Cart'
+import { Store } from '../context/Cart'
 
 import Layout from '../components/Layout'
 import CheckoutWizard from '../components/CheckoutWizard'
 
 function Shipping() {
-  const { handleSubmit, setValue, register, formState: { errors } } = useForm()
+  const { handleSubmit, setValue, register } = useForm()
 
-  const { state, dispatch } = useContext(CartContext)
+  const { state, dispatch } = useContext(Store)
 
   const { cart } = state
   const { shippingData } = cart
@@ -64,9 +64,8 @@ function Shipping() {
             id='name'
             placeholder='Name'
             autoFocus
-            {...register('name', { required: true })}
+            {...register('name')}
           />
-          {errors.name && <span className='text-red-500 bg-red-200 rounded-xl px-2 '>This field is required</span>}
         </div>
         <div className='mb-4'>
           <input
@@ -74,9 +73,8 @@ function Shipping() {
             id='address'
             placeholder='Address'
             autoFocus
-            {...register('address', { required: true })}
+            {...register('address')}
           />
-          {errors.address && <span className='text-red-500 bg-red-200 rounded-xl px-2 '>This field is required</span>}
         </div>
         <div className='mb-4'>
           <input
@@ -84,9 +82,8 @@ function Shipping() {
             id='postalCode'
             placeholder='Postal Code'
             autoFocus
-            {...register('postalCode', { required: true })}
+            {...register('postalCode')}
           />
-          {errors.postalCode && <span className='text-red-500 bg-red-200 rounded-xl px-2 '>This field is required</span>}
         </div>
         <div className='mb-4'>
           <button className='rounded-xl bg-gray-700 text-white px-4 py-2 w-28'>
