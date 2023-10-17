@@ -1,22 +1,19 @@
+import bcrypt from "bcryptjs"
+
 const users = [
   {
-    name: 'admin',
-    email: 'admin@frontcast.ir',
-    password: '123456',
-    isAdmin: true,
+    name: "user 1",
+    email: "user1@gmail.com",
+    password: bcrypt.hashSync("12345"),
+    isAdmin: true
   },
   {
-    name: 'User 1',
-    email: 'user1@frontcast.ir',
-    password: '123456',
-    isAdmin: false,
-  },
-  {
-    name: 'User 2',
-    email: 'user2@frontcast.ir',
-    password: '123456',
-    isAdmin: false,
-  },
+    name: "user 2",
+    email: "user2@gmail.com",
+    password: bcrypt.hashSync("54321"),
+    isAdmin: false
+  }
 ]
+
 
 export default users
