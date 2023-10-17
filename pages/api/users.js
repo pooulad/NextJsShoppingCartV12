@@ -1,13 +1,15 @@
-import db from "../../utils/db"
-import User from "../../models/user"
-import userItems from "../../data/users"
+import db from '../../utils/db'
+import users from '../../data/users'
+import User from '../../models/user'
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   await db.connect()
 
   await User.deleteMany()
 
-  await User.insertMany(userItems)
+  await User.insertMany(users)
 
-  res.send({ message: "users added" })
+  res.send({ message: 'user added.' })
 }
+
+export default handler
